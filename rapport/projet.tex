@@ -1,0 +1,131 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\author{Karim ELLOUZE, Philipp HANUSSEK}
+\title{Projet MOGPL : optimisation robuste dans l’incertain total}
+\begin{document}
+\maketitle
+\newpage
+\chapter{Linéarisation des critères maxmin et minmax regret}
+\section{Programme linéare \textit{maxmin}}
+\begin{align*}
+\max \quad & t \\
+\text{sous contraintes} \quad & t \leq \sum_{i=1}^{n} v_{i,1} x_i \\
+& t \leq \sum_{i=1}^{n} v_{i,2} x_i \\
+& \sum_{i=1}^{n} w_i x_i \leq W \\
+& x_i \in \{0, 1\}, \quad \forall i = 1, \ldots, n
+\end{align*}
+Solution optimale trouvé avec Gurobi:
+\begin{align*}
+	x^* 	&= [2, 3, 4, 7, 8, 9]\\
+	z(x^*) 	&= [66,66]
+\end{align*}
+\section{Programme linéaire \textit{minmax regret}}
+\begin{align*}
+\min \quad & t \\
+\text{sous contraintes} \quad & t \geq z_1^* - \sum_{i=1}^{n} v_{i,1} x_i \\
+& t \geq z_2^* - \sum_{i=1}^{n} v_{i,2} x_i \\
+& \sum_{i=1}^{n} w_i x_i \leq W \\
+& x_i \in \{0, 1\}, \quad \forall i = 1, \ldots, n
+\end{align*}
+$z_i^*$ étant la meilleure valeure pour le scénario i\\\\
+Solution optimale trouvé avec Gurobi:
+\begin{align*}
+	x^{'*} 	&= [2, 3, 6, 7, 8, 9]\\
+	z(x_1^*,x_2^*) &= [112,118]\\ 
+	z(x^{'*}) 	&= [62,70]
+\end{align*}
+\section{Représentation dans le plan}
+\section{Analyse de pérformance}
+\chapter{Linéarisation du critère \textit{maxOWA}}
+\section{$L_k(z)$ comme valeur optimale}
+\textbf{Explication :} Étant donné que le vecteur $(z_{(1)}, \ldots, z_{(n)})$ est ordonné en ordre croissant, la somme $\sum_{i=1}^{k} z(i)$ correspond à la somme des $k$ plus petites valeurs de $z_i$ et donc à la valeur optimale du programme linéaire.
+\section{Utiliser le dual pour trouver les composantes du $L(z)$ }
+Primal:
+
+\begin{align*}
+\min & \sum_{i=1}^{n} a_{ik} z_i \\
+\text{s.c.} \quad & \sum_{i=1}^{n} a_{ik} = k \\
+& 0 \leq a_{ik} \leq 1, \quad i = 1, \dots, n
+\end{align*}
+
+Dual:
+
+\begin{align*}
+\max & \quad k \cdot r_k - \sum_{i=1}^{n} b_{ik} \\
+\text{s.c.} \quad & r_k - b_{ik} \leq z_i, \quad \forall i = 1, \dots, n \\
+& b_{ik} \geq 0, \quad \forall i = 1, \dots, n
+\end{align*}
+Trouver $L(z)$ avec $z=[2,9,6,8,5,4]$ (voir le code pour calculation par programmation linéaire):
+\begin{align*}
+L_1(z)&= 2\\
+L_2(z)&= 6\\
+L_3(z)&= 11\\
+L_4(z)&= 17\\
+L_5(z)&= 25\\
+L_6(z)&= 34\\
+\end{align*}
+\section{Reécrire l'OWA}
+Montrer que 
+\begin{align*}
+g(x)& =\sum_{i=1}^{n}w_iz_{(i)}(x)\\
+&=\sum_{k=1}^{n}w'_k L_k(z(x))
+\end{align*}
+\textbf{Explication:}
+\begin{align*}
+\text{par définition: }z_{(k)}(x)&=L_k(z(x)) - L_{k-1}(z(x))\\
+g(x)& =\sum_{i=1}^{n}w_iz_{(i)}(x)\\
+&=w_1z_{(1)}+w_2z_{(2)}+\ldots+w_nz_{(n)}\\
+&=w_1L_1(z(x))+w_2(L_2(z(x))-L_1(z(x)))+\ldots+w_n(L_n(z(x))-L_{n-1}(z(x))\\
+&=(w_1-w_2)L_1(z(x))+(w_2-w_3)(L_2(z(x)))+\ldots+(w_{n-1}-w_{n})L_n\\
+&=\sum^n_{k=1}w'_kL_k(z(x))
+\end{align*}
+\section{Formulation \textit{maxOWA} pour le problème SAD}
+\begin{align*}
+&\max && \sum_{k=1}^n w'_k \left( k \cdot r_k - \sum_{i=1}^n b_{ik} \right) \\
+&\text{s.c.} && r_k - b_{ik} \leq z_i(x)\\
+&&& b_{ik} \geq 0\\
+&&& \sum_{i=1}^{n} w_i x_i \leq W, \\
+&&& x_i \in \{0, 1\}, \quad i = 1, \dots, n.
+\end{align*}
+Solution optimale trouvé avec Gurobi:
+\begin{align*}
+	x^{*} 	&= [2, 3, 4, 7, 8, 9]\\
+	z(x^{*}) 	&= [66, 66]
+\end{align*}
+\section{Formulation linéaire pour le critère de \textit{minOWA}}
+Primal:\\\\
+$L_k(z)=\sum_{i=1}^{k} r(x,s_{(i)})$, regret en ordre décroissant, donc:\\
+\begin{align*}
+    \max &\sum_{i=1}^n a_{ik} r(x,s_{(i)})\\
+\text{s.c.} \quad & \sum_{i=1}^{n} a_{ik} = k \\
+& 0 \leq a_{ik} \leq 1, \quad i = 1, \dots, n
+\end{align*}
+$r(x,s_{(i)}) = z_i^*-z_i(x)$\\\\
+Dual:
+\begin{align*}
+\min & \quad k \cdot r_k + \sum_{i=1}^{n} b_{ik} \\
+\text{s.c.} \quad & r_k + b_{ik} \geq r(x,s_{(i)}), \quad \forall i = 1, \dots, n \\
+& b_{ik} \geq 0, \quad \forall i = 1, \dots, n
+\end{align*}\\\\
+Formulation entière:
+\begin{align*}
+\min &\sum_{k=1}^n w'_k \left( k \cdot r_k + \sum_{i=1}^n b_{ik} \right) \\
+\text{s.c.} & \quad r_k + b_{ik} \geq r(x,s_{(i)}), \quad i = 1, \dots, n \\
+& \quad b_{ik} \geq 0, \quad i = 1, \dots, n \\
+& \sum_{i=1}^{n} w_i x_i \leq W\\
+&x_i\in\{0,1\}\quad \forall i=1, \dots,n
+\end{align*}
+Solution optimale trouvé avec Gurobi:
+\begin{align*}
+	x^{'*} 	&= [2, 4, 5, 7, 8, 9]\\
+	z(x_1^*,x_2^*) &= [112,118]\\ 
+	z(x^{'*}) 	&= [62,70]
+\end{align*}
+\end{document}
