@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{multirow}
 \usepackage{graphicx}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \author{Karim ELLOUZE, Philipp HANUSSEK}
@@ -128,4 +129,133 @@ Solution optimale trouvé avec Gurobi:
 	z(x_1^*,x_2^*) &= [112,118]\\ 
 	z(x^{'*}) 	&= [62,70]
 \end{align*}
+\chapter{Application à la recherche d’un chemin robuste dans un graphe}
+\section{Modelisation du problème de plus court chemin comme problème du flot de coût minimum}
+
+$G=(V,E)$, source: $s \in V$, puit: $t \in V$
+
+$a(u,v)$: cout pour passer de u à v, $f(u,v)=1$ si $(u,v) \in $ {plus court chemin}\\\\
+Programme linéaire:
+\begin{align*}
+\min&\sum_{(u,v)\in E} a(u,v)f(u,v)&\\
+s.c.& \sum_{(u,v)\in E}f(u,v) = \sum_{(v,w)\in E}f(v,w) \quad \forall v \in V \setminus \{s, t\}& \text{, contrainte de conservation du flux}\\
+    & \sum_{s,v \in E} f(s,v) >= 1 &\text{ , contrainte de flux sortant de la source}\\
+    &f(u,v)\in (0,1) \quad \forall (u,v) \in E&
+\end{align*}
+\section{Application aux exemples}
+Solution optimale trouvé avec Gurobi pour l'instance 1:
+\begin{align*}
+	x_1^{*} 	&= [a, b, d, f]\\
+	x_2^*		&= [a, c, d, f]\\
+	z(x^{*}) 	&= [8, 4]
+\end{align*}
+Pour l'instance 2:
+\begin{align*}
+	x_1^{*} 	&= [a, d, c, f, g]\\
+	x_2^*		&= [a, c, e, g]\\
+	z(x^{*}) 	&= [5, 6]
+\end{align*}
+\section{Programmes linéaires pour trouver un chemin robuste}
+$x$ est une solution valide si:
+\begin{align*}
+           & \sum_{(u,v)\in E}f(u,v) = \sum_{(v,w)\in E}f(v,w) \quad \forall v \in V \setminus \{s, t\}& \text{, contrainte de conservation du flux}\\
+            & \sum_{s,v \in E} f(s,v) >= 1 &\text{ , contrainte de flux sortant de la source}&\\
+            &f(u,v)\in \{0,1\} \quad \forall (u,v) \in E&
+\end{align*}
+\subsection*{\textit{minmax}}
+Comme on veut trouver le plus court chemin, on calcule le \textit{min} des solutions maximales pour un chemin $X$.
+
+Programme linéaire pour $n$ scénarios:
+\begin{align*}
+\min\quad   & t&&\\
+s.c.\quad   &t\ge\sum_{(u,v)\in E} a_i(u,v)f(u,v)&i\in\{1,\ldots,n\}\\
+                & x \in X\\
+            &f(u,v)\in \{0,1\} \quad \forall (u,v) \in E&
+\end{align*}
+\subsection*{\textit{minmax} des regrets}
+Programme linéaire pour $n$ scénarios:
+\begin{align*}
+\min\quad   & t&&\\
+s.c.\quad   &t\ge\sum_{(u,v)\in E} \bigl(a_i(u,v)f(u,v)\bigl)-z_i^*&i\in\{1,\ldots,n\}\\
+                & x \in X\\
+            &f(u,v)\in \{0,1\} \quad \forall (u,v) \in E&
+\end{align*}
+\subsection*{\textit{minOWA}}
+\begin{align*}
+\min            &\sum_{k=1}^n w'_k \left( k \cdot r_k + \sum_{i=1}^n b_{ik} \right) \\
+\text{s.c.}     & \quad r_k + b_{ik} \geq z_i(x) \quad i = 1,\ldots,n\\
+                & x \in X\\
+                & \quad b_{ik} \geq 0, \quad i = 1, \dots, n \\
+\end{align*}
+\subsection*{\textit{minOWA} des regrets}
+\begin{align*}
+\min &\sum_{k=1}^n w'_k \left( k \cdot r_k + \sum_{i=1}^n b_{ik} \right) \\
+\text{s.c.} & \quad r_k + b_{ik} \geq r(x,s_{(i)}), \quad i = 1, \dots, n \\
+& \quad b_{ik} \geq 0, \quad i = 1, \dots, n \\
+& \quad x \in X
+\end{align*}
+\subsection*{Résultats}
+\subsubsection{minMax et minMax des regrets}
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.5} % Augmente l'espacement vertical dans le tableau
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Instance} & \textbf{Méthode}        & \textbf{Chemin}  & \textbf{Valeur de la fonction objectif} & \textbf{Vecteur\_z} \\ \hline
+\multirow{2}{*}{Instance 0} 
+                  & minmax                  & a,b,d,f          & 9             & [8, 9]              \\ \cline{2-5}
+                  & minMax des regrets      & a,b,e,f          & 3             & [11, 7]             \\ \hline
+\multirow{2}{*}{Instance 1} 
+                  & minmax                  & a,b,e,g          & 10            & [10, 10]            \\ \cline{2-5}
+                  & minMax des regrets      & a,b,e,g          & 5             & [10, 10]            \\ \hline
+\end{tabular}
+\caption{Comparaison des résultats des méthodes minmax et minMax des regrets.}
+\label{tab:resultats}
+\end{table}
+\subsubsection{minOWA et minOWA des regrets}
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{Méthode}        & \textbf{Instance} & \textbf{\(k\)} & \textbf{Chemin} & \textbf{\( \text{Vecteur\_z} \)} & \textbf{Valeur de la fonction objectif} \\ \hline
+\multirow{8}{*}{minOWA} & \multirow{4}{*}{0} 
+                        & 2  & a,b,d,f          & [8, 9]        & 26 \\ \cline{3-6} 
+                        &                       & 4  & a,b,d,f          & [8, 9]        & 44 \\ \cline{3-6} 
+                        &                       & 8  & a,b,d,f          & [8, 9]        & 80 \\ \cline{3-6} 
+                        &                       & 16 & a,b,d,f          & [8, 9]        & 152 \\ \cline{2-6} 
+                        & \multirow{4}{*}{1} 
+                        & 2  & a,b,e,g          & [10, 10]      & 30 \\ \cline{3-6} 
+                        &                       & 4  & a,b,e,g          & [10, 10]      & 50 \\ \cline{3-6} 
+                        &                       & 8  & a,b,e,g          & [10, 10]      & 90 \\ \cline{3-6} 
+                        &                       & 16 & a,b,e,g          & [10, 10]      & 170 \\ \hline
+\multirow{8}{*}{minOWA des regrets} 
+                        & \multirow{4}{*}{0} 
+                        & 2  & a,b,e,f          & [11, 7]       & 9 \\ \cline{3-6} 
+                        &                       & 4  & a,b,e,f          & [11, 7]       & 15 \\ \cline{3-6} 
+                        &                       & 8  & a,b,e,f          & [11, 7]       & 27 \\ \cline{3-6} 
+                        &                       & 16 & a,b,e,f          & [11, 7]       & 51 \\ \cline{2-6} 
+                        & \multirow{4}{*}{1} 
+                        & 2  & a,d,f,g          & [6, 12]       & 13 \\ \cline{3-6} 
+                        &                       & 4  & a,b,e,g          & [10, 10]      & 24 \\ \cline{3-6} 
+                        &                       & 8  & a,b,e,g          & [10, 10]      & 44 \\ \cline{3-6} 
+                        &                       & 16 & a,b,e,g          & [10, 10]      & 84 \\ \hline
+\end{tabular}
+\caption{Comparaison des méthodes minOWA et minOWA des regrets.}
+\label{tab:methods}
+\end{table}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Instance & \( z^* \) \\
+\hline
+0 & [8, 4] \\
+1 & [5, 6] \\
+\hline
+\end{tabular}
+\caption{Valeurs de \( z^* \) pour chaque instance}
+\label{tab:z_star}
+\end{table}
+
 \end{document}
