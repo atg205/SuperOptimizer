@@ -7,6 +7,8 @@
 \usepackage{amssymb}
 \usepackage{multirow}
 \usepackage{graphicx}
+\usepackage{caption}
+\usepackage{svg}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \author{Karim ELLOUZE, Philipp HANUSSEK}
 \title{Projet MOGPL : optimisation robuste dans l’incertain total}
@@ -44,6 +46,12 @@ Solution optimale trouvé avec Gurobi:
 \end{align*}
 \section{Représentation dans le plan}
 \section{Analyse de pérformance}
+\begin{figure}[h!]
+    \centering
+    \includesvg[width=\linewidth]{figures/performance_ex1.svg}  
+    \caption{Comparaison des temps d'exécution pour les modèles maxmin et minmax regret.}
+    \label{fig:performance_ex1}
+\end{figure}
 \chapter{Linéarisation du critère \textit{maxOWA}}
 \section{$L_k(z)$ comme valeur optimale}
 \textbf{Explication :} Étant donné que le vecteur $(z_{(1)}, \ldots, z_{(n)})$ est ordonné en ordre croissant, la somme $\sum_{i=1}^{k} z(i)$ correspond à la somme des $k$ plus petites valeurs de $z_i$ et donc à la valeur optimale du programme linéaire.
@@ -129,6 +137,13 @@ Solution optimale trouvé avec Gurobi:
 	z(x_1^*,x_2^*) &= [112,118]\\ 
 	z(x^{'*}) 	&= [62,70]
 \end{align*}
+\section{Analyse de performance}
+\begin{figure}[h!]
+    \centering
+    \includesvg[width=\linewidth]{figures/performance_ex2.svg}  
+    \caption{Comparaison des temps d'exécution pour les modèles maxOWA et minOWA des regrets.}
+    \label{fig:performance_ex2}
+\end{figure}
 \chapter{Application à la recherche d’un chemin robuste dans un graphe}
 \section{Modelisation du problème de plus court chemin comme problème du flot de coût minimum}
 
