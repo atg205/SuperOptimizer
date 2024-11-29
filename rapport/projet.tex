@@ -8,6 +8,7 @@
 \usepackage{multirow}
 \usepackage{graphicx}
 \usepackage{caption}
+\usepackage{hyperref}
 \usepackage{svg}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \author{Karim ELLOUZE, Philipp HANUSSEK}
@@ -52,6 +53,7 @@ Solution optimale trouvé avec Gurobi:
     \caption{Comparaison des temps d'exécution pour les modèles maxmin et minmax regret.}
     \label{fig:performance_ex1}
 \end{figure}
+Regret prend plus de temps que maxMin, parce qu'il calcule la valeur optimale $z^*$ pour chaque scénario d'abord. Le temps de calcul augmente pour les deux quand il y a plus des contraints (traduit par plusieurs scénarios). Les résultats trouvés qui montrent un temps supérieur de résolution pour $p=10$ à $p=20$ ne sont pas consistente avec ce qui est attendu et avec ce qui est observé dans l'exercice 2 et 3.
 \chapter{Linéarisation du critère \textit{maxOWA}}
 \section{$L_k(z)$ comme valeur optimale}
 \textbf{Explication :} Étant donné que le vecteur $(z_{(1)}, \ldots, z_{(n)})$ est ordonné en ordre croissant, la somme $\sum_{i=1}^{k} z(i)$ correspond à la somme des $k$ plus petites valeurs de $z_i$ et donc à la valeur optimale du programme linéaire.
@@ -144,6 +146,7 @@ Solution optimale trouvé avec Gurobi:
     \caption{Comparaison des temps d'exécution pour les modèles maxOWA et minOWA des regrets.}
     \label{fig:performance_ex2}
 \end{figure}
+Comme dans l'exercice 1, on observe que minOWA regrets prend plus de temps que maxOWA. Le temps d'exection augmente avec le nombre de variables (projets) et le nombre de contraints (scénarios). En plus, on observe que le temps de résolution augment plus en ajoutant une contrainte qu'en ajoutant une variable. 
 \chapter{Application à la recherche d’un chemin robuste dans un graphe}
 \section{Modelisation du problème de plus court chemin comme problème du flot de coût minimum}
 
@@ -272,6 +275,9 @@ Instance & \( z^* \) \\
 \caption{Valeurs de \( z^* \) pour chaque instance}
 \label{tab:z_star}
 \end{table}
+On observe dans le \autoref{tab:methods} qu'il y a un seul changement de chemin dans minOWA des regrets pour l'instance 1. Ce changement est due au fait que lorsque $k=2$ les regrets sont de $[1,6]$, donc pour une faible valeur $k$ le chemin \textit{a,d,f,g} est optimale, mais si on augmente $k$, le vecteur des regrets $z=[5,4]$ correspondant au chemin \textit{a,b,e,g} devient l'optimal. Donc pour des valeurs plus élevés de $k$ on cherche un vecteur (de regrets) avec des valeurs qui sont assez proches.
+
+%supposons que $z_1-z_1^*>z_2-z_2^*$. Initialement, la valeur de la fonction objectif est $k(z_1-z_1^*)+z_2-z_2^*$, donc c'est le minimum. Soit $z'=[z'_1, z'_2]$ une solution qui initialemment n'est pas optimale. On a donc $k(z_1-z_1^*)+z_2-z_2^* <k(z'_1-z'_1^*)+z'_2-z'_2^*$. Si $z_1-z_1^*>z'_1-z'_1^*$
 \section{Analyse de pérformance}
 \begin{figure}[h!]
     \centering
@@ -279,4 +285,5 @@ Instance & \( z^* \) \\
     \caption{Comparaison des temps d'exécution pour les modèles minMax, minMaxRegret, minOWA et minOWA des regrets.}
     \label{fig:performance_ex3}
 \end{figure}
+On observe que les méthodes calculant le regret (minMaxRegret, minOWAregret) ont un temps moyen d'exécution plus important à cause du calcul de $z^*$. On observe que minOWA prend plus de temps que minMax et que minOWARegret prend plus de temps que minMaxRegret parce qu'on utilise plus de variables. Dans l'OWA il y a $n$ variables $r_k$ et $n^2$ variables $b_{ik}$ et pour maxMin il y a $p$ variables. Pour les valeurs $n$ et $p$ prises, $n^2+n$ est toujours supérieur à $p$.
 \end{document}
