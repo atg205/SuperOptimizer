@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.11.26)  29 NOV 2024 17:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.11.26)  30 NOV 2024 11:23
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -585,105 +585,121 @@ LaTeX Info: Redefining \nameref on input line 16.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 18.
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Chapitre 1.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 35.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 18.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Chapitre 1.
-
-Underfull \hbox (badness 10000) in paragraph at lines 40--43
+)
+Underfull \hbox (badness 10000) in paragraph at lines 54--57
 
  []
 
+Package svg Info: Last page of `./svg-inkscape/z1_z2_representation_svg-tex.pdf
+' is 1 on input line 65.
+(./svg-inkscape/z1_z2_representation_svg-tex.pdf_tex
+<./svg-inkscape/z1_z2_representation_svg-tex.pdf, id=87, page=1, 517.54108pt x 
+394.46999pt>
+File: ./svg-inkscape/z1_z2_representation_svg-tex.pdf Graphic file (type pdf)
+<use ./svg-inkscape/z1_z2_representation_svg-tex.pdf, page 1>
+Package pdftex.def Info: ./svg-inkscape/z1_z2_representation_svg-tex.pdf , page
+1 used on input line 56.
+(pdftex.def)             Requested size: 483.69687pt x 368.67708pt.
+)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.68 \end{figure}
+                  [1
+
+]
 Package svg Info: Last page of `./svg-inkscape/performance_ex1_svg-tex.pdf' is 
-1 on input line 52.
-(./svg-inkscape/performance_ex1_svg-tex.pdf_tex
-<./svg-inkscape/performance_ex1_svg-tex.pdf, id=83, page=1, 850.6198pt x 424.74
-121pt>
+1 on input line 73.
+ (./svg-inkscape/performance_ex1_svg-tex.pdf_tex
+<./svg-inkscape/performance_ex1_svg-tex.pdf, id=103, page=1, 850.6198pt x 424.7
+4121pt>
 File: ./svg-inkscape/performance_ex1_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/performance_ex1_svg-tex.pdf, page 1>
 Package pdftex.def Info: ./svg-inkscape/performance_ex1_svg-tex.pdf , page1 use
 d on input line 56.
 (pdftex.def)             Requested size: 483.69687pt x 241.5282pt.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.55 \end{figure}
-                  [1
+)
 
-] [2 <./svg-inkscape/performance_ex1_svg-tex.pdf>]
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[2 <./svg-inkscape/z1_z2_representation_svg-tex.pdf>] [3 <./svg-inkscape/perfor
+mance_ex1_svg-tex.pdf>]
 Chapitre 2.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 58.
+(hyperref)                removing `math shift' on input line 79.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 58.
+(hyperref)                removing `subscript' on input line 79.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 58.
+(hyperref)                removing `math shift' on input line 79.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 60.
+(hyperref)                removing `math shift' on input line 81.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 60.
+(hyperref)                removing `math shift' on input line 81.
 
-[3
+[4
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 114--116
+Underfull \hbox (badness 10000) in paragraph at lines 135--137
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--116
+Underfull \hbox (badness 10000) in paragraph at lines 135--137
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--123
+Underfull \hbox (badness 10000) in paragraph at lines 141--144
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--129
+Underfull \hbox (badness 10000) in paragraph at lines 148--150
 
  []
 
-[4]
+[5]
 Package svg Info: Last page of `./svg-inkscape/performance_ex2_svg-tex.pdf' is 
-1 on input line 145.
+1 on input line 166.
  (./svg-inkscape/performance_ex2_svg-tex.pdf_tex
-<./svg-inkscape/performance_ex2_svg-tex.pdf, id=135, page=1, 850.08282pt x 424.
+<./svg-inkscape/performance_ex2_svg-tex.pdf, id=195, page=1, 850.08282pt x 424.
 74121pt>
 File: ./svg-inkscape/performance_ex2_svg-tex.pdf Graphic file (type pdf)
 <use ./svg-inkscape/performance_ex2_svg-tex.pdf, page 1>
 Package pdftex.def Info: ./svg-inkscape/performance_ex2_svg-tex.pdf , page1 use
 d on input line 56.
 (pdftex.def)             Requested size: 483.69687pt x 241.67726pt.
-) [5 <./svg-inkscape/performance_ex2_svg-tex.pdf>]
+) [6 <./svg-inkscape/performance_ex2_svg-tex.pdf>]
 Chapitre 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--157
+Underfull \hbox (badness 10000) in paragraph at lines 176--178
 
  []
 
-[6
+[7
 
 ]
 
@@ -692,11 +708,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[7]
+[8]
 Package svg Info: Last page of `./svg-inkscape/performance_comparison_all_svg-t
-ex.pdf' is 1 on input line 284.
+ex.pdf' is 1 on input line 305.
  (./svg-inkscape/performance_comparison_all_svg-tex.pdf_tex
-<./svg-inkscape/performance_comparison_all_svg-tex.pdf, id=179, page=1, 731.131
+<./svg-inkscape/performance_comparison_all_svg-tex.pdf, id=238, page=1, 731.131
 03pt x 875.67104pt>
 File: ./svg-inkscape/performance_comparison_all_svg-tex.pdf Graphic file (type 
 pdf)
@@ -708,16 +724,16 @@ Package pdftex.def Info: ./svg-inkscape/performance_comparison_all_svg-tex.pdf
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8] [9 <./svg-inkscape/performance_comparison_all_svg-tex.pdf>] (./projet.aux)
+[9] [10 <./svg-inkscape/performance_comparison_all_svg-tex.pdf>] (./projet.aux)
 Package rerunfilecheck Info: File `projet.out' has not changed.
 (rerunfilecheck)             Checksum: 5DB46D6FC3ADEE865EE741BAAE00A9CE;4343.
  ) 
 Here is how much of TeX's memory you used:
- 15786 strings out of 480104
- 266179 string characters out of 5892284
- 611845 words of memory out of 5000000
- 33432 multiletter control sequences out of 15000+600000
- 491416 words of font info for 79 fonts, out of 8000000 for 9000
+ 15779 strings out of 480104
+ 266659 string characters out of 5892284
+ 611987 words of memory out of 5000000
+ 33425 multiletter control sequences out of 15000+600000
+ 486775 words of font info for 61 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
  94i,12n,92p,566b,515s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
@@ -738,12 +754,12 @@ e1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
 fbx2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/sh
 are/texmf/fonts/type1/public/cm-super/sfcc1000.pfb></usr/share/texmf/fonts/type
 1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-rm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/sha
+rm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/sha
 re/texmf/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on projet.pdf (10 pages, 684165 bytes).
+Output written on projet.pdf (11 pages, 708403 bytes).
 PDF statistics:
- 719 PDF objects out of 1000 (max. 8388607)
- 500 compressed objects within 5 object streams
- 40 named destinations out of 1000 (max. 500000)
- 179 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 774 PDF objects out of 1000 (max. 8388607)
+ 537 compressed objects within 6 object streams
+ 42 named destinations out of 1000 (max. 500000)
+ 189 words of extra memory for PDF output out of 10000 (max. 10000000)
 

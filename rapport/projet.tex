@@ -14,7 +14,21 @@
 \author{Karim ELLOUZE, Philipp HANUSSEK}
 \title{Projet MOGPL : optimisation robuste dans l’incertain total}
 \begin{document}
-\maketitle
+\begin{titlepage}
+    \centering
+    \vspace*{4cm}
+    {\Huge \textbf{MOGPL Projet 2024-2025}}\\[1.5cm]
+    {\Large Master Informatique -- Semestre 1}\\[0.5cm]
+    {\large Sorbonne Université}\\[2.5cm]
+    {\Large \textbf{Optimisation robuste dans l'incertain rotal}}\\[3cm]
+    \vfill
+    \begin{flushright}
+        \textbf{Auteurs :}\\
+        Karim ELLOUZE\\
+        Philipp HANUSSEK
+    \end{flushright}
+    \vspace*{2cm}
+\end{titlepage}
 \newpage
 \chapter{Linéarisation des critères maxmin et minmax regret}
 \section{Programme linéare \textit{maxmin}}
@@ -46,6 +60,13 @@ Solution optimale trouvé avec Gurobi:
 	z(x^{'*}) 	&= [62,70]
 \end{align*}
 \section{Représentation dans le plan}
+\begin{figure}[h!]
+    \centering
+    \includesvg[width=\linewidth]{figures/ex1/z1_z2_representation}  
+    \caption{Représentation des solutions $z(x^*_1)$, $z(x^*_2)$, $z(x^*)$, $z(x'^*)$ dans le plan $z_1(x)$ et $z_2(x)$}
+    \label{fig:z1_z2_plan}
+\end{figure}
+Conclusion: Les solutions trouvés dans la question 1 et 2 ne sont pas sur la ligne entre les variables $z(x^*_1)$, $z(x^*_2)$, donc on ne peut pas trouver $z(x'^*)$ et $z(x^*)$ en ponderant les $z(x^*_1)$, $z(x^*_2)$ (voir \autoref{fig:z1_z2_plan}).
 \section{Analyse de pérformance}
 \begin{figure}[h!]
     \centering
@@ -53,7 +74,7 @@ Solution optimale trouvé avec Gurobi:
     \caption{Comparaison des temps d'exécution pour les modèles maxmin et minmax regret.}
     \label{fig:performance_ex1}
 \end{figure}
-Regret prend plus de temps que maxMin, parce qu'il calcule la valeur optimale $z^*$ pour chaque scénario d'abord. Le temps de calcul augmente pour les deux quand il y a plus des contraints (traduit par plusieurs scénarios). Les résultats trouvés qui montrent un temps supérieur de résolution pour $p=10$ à $p=20$ ne sont pas consistente avec ce qui est attendu et avec ce qui est observé dans l'exercice 2 et 3.
+Comme on observe dans la \autoref{fig:performance_ex1} regret prend plus de temps que maxMin, parce qu'il calcule la valeur optimale $z^*$ pour chaque scénario d'abord. Le temps de calcul augmente pour les deux quand il y a plus des contraints (traduit par plusieurs scénarios). Les résultats trouvés qui montrent un temps supérieur de résolution pour $p=10$ à $p=20$ ne sont pas consistente avec ce qui est attendu et avec ce qui est observé dans l'exercice 2 et 3.
 \chapter{Linéarisation du critère \textit{maxOWA}}
 \section{$L_k(z)$ comme valeur optimale}
 \textbf{Explication :} Étant donné que le vecteur $(z_{(1)}, \ldots, z_{(n)})$ est ordonné en ordre croissant, la somme $\sum_{i=1}^{k} z(i)$ correspond à la somme des $k$ plus petites valeurs de $z_i$ et donc à la valeur optimale du programme linéaire.
@@ -285,5 +306,5 @@ On observe dans le \autoref{tab:methods} qu'il y a un seul changement de chemin 
     \caption{Comparaison des temps d'exécution pour les modèles minMax, minMaxRegret, minOWA et minOWA des regrets.}
     \label{fig:performance_ex3}
 \end{figure}
-On observe que les méthodes calculant le regret (minMaxRegret, minOWAregret) ont un temps moyen d'exécution plus important à cause du calcul de $z^*$. On observe que minOWA prend plus de temps que minMax et que minOWARegret prend plus de temps que minMaxRegret parce qu'on utilise plus de variables. Dans l'OWA il y a $n$ variables $r_k$ et $n^2$ variables $b_{ik}$ et pour maxMin il y a $p$ variables. Pour les valeurs $n$ et $p$ prises, $n^2+n$ est toujours supérieur à $p$.
+On observe dans la \autoref{fig:performance_ex3} que les méthodes calculant le regret (minMaxRegret, minOWAregret) ont un temps moyen d'exécution plus important à cause du calcul de $z^*$. On observe que minOWA prend plus de temps que minMax et que minOWARegret prend plus de temps que minMaxRegret parce qu'on utilise plus de variables. Dans l'OWA il y a $n$ variables $r_k$ et $n^2$ variables $b_{ik}$ et pour maxMin il y a $p$ variables. Pour les valeurs $n$ et $p$ prises, $n^2+n$ est toujours supérieur à $p$.
 \end{document}
