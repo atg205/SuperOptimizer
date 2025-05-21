@@ -29,5 +29,5 @@ Each criterion was reformulated into a linear or mixed-integer linear program to
 
 ## Authors
 
-- [Karim Ellouze]
+- Karim Ellouze
 - [Philipp Hanussek](https://www.linkedin.com/in/philipp-hanussek-689bb7249/)
